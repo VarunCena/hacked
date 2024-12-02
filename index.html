@@ -12,6 +12,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column; /* To allow the text to be below the image */
       min-height: 100vh;
       background-color: black; /* Black background */
       overflow: hidden;
@@ -41,6 +42,9 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       position: relative; /* Ensure image stays on top of the background */
       z-index: 1; /* Keep the image above the matrix effect */
+      opacity: 0; /* Initially hidden */
+      animation: popUpEffect 1s forwards; /* Add pop-up animation */
+      animation-delay: 1s; /* Delay the animation for 1 second */
     }
 
     /* Responsive image */
@@ -77,6 +81,26 @@
         transform: translateY(-100vh); /* Move upwards */
       }
     }
+
+    /* Pop-up effect for the image */
+    @keyframes popUpEffect {
+      0% {
+        transform: scale(0); /* Start from small scale */
+        opacity: 0; /* Fully transparent */
+      }
+      100% {
+        transform: scale(1); /* Return to normal size */
+        opacity: 1; /* Fully visible */
+      }
+    }
+
+    /* Styling for the text below the image */
+    .warning-text {
+      color: white;
+      font-size: 18px;
+      margin-top: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -85,9 +109,11 @@
 
   <!-- Image container -->
   <div class="image-container">
-    <img id="discoImage" src="Himg.png" alt="Responsive Example Image">
+    <img id="discoImage" src="Himgs.jpg" alt="Responsive Example Image">
   </div>
 
+  <!-- Warning text below the image -->
+ 
   <script>
     // Function to toggle the green filter on the image
     let isGreen = false;
